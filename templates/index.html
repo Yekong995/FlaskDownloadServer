@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Home</title>
+        <meta charset="utf-8" />
+    </head>
+
+    <body>
+        <div id="title_bar">
+            <h1>Download Page</h1>
+            <a href="{{ url_for('refresh') }}" id="refresh_btn"><button>Refresh</button></a>
+        </div>
+
+        <!-- flash msg -->
+        {% if get_flashed_messages() %}
+        <hr />
+            {% for message in get_flashed_messages() %}
+            <h3 style="color: red;">{{ message }}</h3>
+            {% endfor %}
+        <hr />
+        <br />
+        {% endif %}
+
+        <hr />
+            <ul>
+                {% for file in files %}
+                <li><a href="{{ url_for('download', filename=file) }}">{{ file }}</a></li>
+                {% endfor %}
+            </ul>
+        <hr />
+    </body>
+
+    <style>
+        a {
+        color: #0366d6;
+        text-decoration: none;
+        }
+
+        #title_bar {
+            display: flex;
+            vertical-align: left;
+        }
+
+        #refresh_btn {
+            margin-left: auto;
+            margin-right: 0;
+            margin-top: 29px;
+            display: inline-block;
+            height: 20px;
+        }
+    </style>
+</html>
