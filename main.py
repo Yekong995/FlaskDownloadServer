@@ -75,13 +75,16 @@ def download(filename):
     console.log(f"File {filename} requested by {user_ip}")
 
     file_path = safe_join(app.root_path, "file")
-    
+
     if file_path is None:
         flash("File not found", "error")
         console.log(f"File {filename} not found")
         return redirect(url_for("index"))
 
-    return send_from_directory(directory=file_path, path=filename, as_attachment=True)
+    return send_from_directory(directory=file_path,
+                               path=filename,
+                               as_attachment=True)
+
 
 @app.route("/refresh")
 def refresh():
